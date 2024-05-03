@@ -1,0 +1,42 @@
+{% extends 'base_layout.html' %}
+
+
+{% block main-content %}
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <td> ID </td>
+            <td> Name </td>
+            <td> Auther </td>
+            <td> Description </td>
+            <td> Actions </td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tbody>
+            {% for book in books %}
+            <tr> 
+                <td> {{ book.id }} </td>
+                <td> {{ book.name }} </td>
+                <td> {{ book.author }} </td>
+                <td> {{ book.description | truncatewords:4 | title }} </td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'books:books-deatil' book.id %}"> View </a>
+                    <a class="btn btn-info" href="{% url 'books:books-update' book.id %}"> Update </a>
+                    <a class="btn btn-info" href="{% url 'books:books-delete' book.id %}"> Delete </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center"> sorry, no Books in list</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </tbody>
+
+</table>
+
+<a class="btn btn-info" href="{% url 'books:books-add' %}"> ADD </a>
+
+{% endblock %}

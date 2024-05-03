@@ -1,0 +1,24 @@
+{% extends 'base_layout.html' %}
+
+
+{% block main-content %}
+<h1>create book</h1>
+<form action="book_added/" method="post">
+
+    {% csrf_token %}
+
+    
+
+    <label for="book_id">Name:</label>
+    <input type="text" name="book_name" value="{{ book_object.name }}">
+
+    <label for="book_author">Auther</label>
+    <input type="text" name="book_author" value="{{ book_object.author }}">
+
+    <label for="book_description">Description</label>
+    <textarea name="book_description">{{ book_object.description }}</textarea>
+
+    <input type="submit" value="ADD">
+</form>
+
+{% endblock %}
