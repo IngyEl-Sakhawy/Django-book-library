@@ -1,24 +1,22 @@
 {% extends 'base_layout.html' %}
 
-
 {% block main-content %}
-<h1>create book</h1>
-<form action="book_added/" method="post">
+<div style="max-width: 500px; margin: 0 auto;">
+    <h1 style="text-align: center;">Create Book</h1>
+    <form action="book_added/" method="post" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
 
-    {% csrf_token %}
+        {% csrf_token %}
 
-    
+        <label for="book_name" style="display: block; margin-bottom: 10px;">Name:</label>
+        <input type="text" name="book_name" value="{{ book_object.name }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;">
 
-    <label for="book_id">Name:</label>
-    <input type="text" name="book_name" value="{{ book_object.name }}">
+        <label for="book_author" style="display: block; margin-bottom: 10px;">Author:</label>
+        <input type="text" name="book_author" value="{{ book_object.author }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;">
 
-    <label for="book_author">Auther</label>
-    <input type="text" name="book_author" value="{{ book_object.author }}">
+        <label for="book_description" style="display: block; margin-bottom: 10px;">Description:</label>
+        <textarea name="book_description" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;">{{ book_object.description }}</textarea>
 
-    <label for="book_description">Description</label>
-    <textarea name="book_description">{{ book_object.description }}</textarea>
-
-    <input type="submit" value="ADD">
-</form>
-
+        <input type="submit" value="ADD" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+    </form>
+</div>
 {% endblock %}

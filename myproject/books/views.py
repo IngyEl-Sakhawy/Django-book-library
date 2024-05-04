@@ -77,10 +77,43 @@ def books_delete(request, **kwrgs):
         books.remove(book_object)
     return redirect("books:books-list")
 
+def books_updated(request, **kwrgs):
+    if request.method == 'POST':
+        
+        book_id = kwrgs.get('book_id')
+        # book_id = request.POST.get('book_id')
+        book_name = request.POST.get('book_name')
+        book_author = request.POST.get('book_author')
+        book_description = request.POST.get('book_description')
+
+        book_object = _get_book(book_id)
+        if book_object:
+            books.remove(book_object)
+
+        new_book = {
+            'id' : book_id,
+            'name': book_name,
+            'author': book_author,
+            'description': book_description
+        }
+
+        books.append(new_book)
+        print(books)
+        
+        
+        return redirect('books:books-list')  
+
 def books_update(request, **kwrgs):
-    book_id = kwrgs.get('task_id')
+    book_id = kwrgs.get('book_id')
     book_object = _get_book(book_id)
-    for book in books:
-        if book ==book_object:
-            book['name'] =  f"Updated {book['name']}"
-    return redirect('books:books-list')   
+    print(book_object)
+    if book_object:
+        my_context = {
+            'book_id': book_object.get('id'),
+            'book_name': book_object.get('name'),
+            'book_author': book_object.get('author'),
+            'book_description': book_object.get('description') 
+        }
+        print(my_context)
+        return render(request, 'books_edit.html', context=my_context)
+    

@@ -1,0 +1,44 @@
+{% extends 'base_layout.html' %}
+
+
+{% block main-content %}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td> ID </td>
+            <td> Name </td>
+            <td> Author </td>
+            <td> Description </td>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        <tr>
+        <form action="{% url 'books:books-updated' book_id %}" method="post">
+                {% csrf_token %}
+                <td > 
+                    <label for="book_id">{{ book_id }}</label>
+                </td>
+                <td>
+                    <input type="text" name="book_name" value=" {{ book_name }} ">
+                </td>
+                <td>
+                    <input type="text" name="book_author" value=" {{ book_author }} ">
+                </td>
+                <td>
+                    <input type="text" name="book_description" value="{{ book_description }}">
+                </td>
+
+                <input type="submit" value="Edit">
+            </form>
+        
+        </tr>
+    </tbody>
+
+</table>
+
+
+{% endblock %}
