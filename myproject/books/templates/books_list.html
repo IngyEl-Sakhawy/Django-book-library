@@ -16,6 +16,7 @@
         <tbody>
             {% for book in books %}
             <tr>
+                {% load static %}
                 <td>{{ book.id }}</td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.author }}</td>
